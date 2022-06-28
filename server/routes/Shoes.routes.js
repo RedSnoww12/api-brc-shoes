@@ -14,7 +14,7 @@ shoesRoute.get("/", asyncHandler(async(req, res) => {
 shoesRoute.get("/:id", asyncHandler(async(req, res) => {
     const shoe = await Shoes.find({_id: req.params.id});
     if (shoe) {
-        res.json(shoe);
+        res.json(shoe).status(200);
     } else {
         res.status(404);
         throw new Error("Shoes not found !");

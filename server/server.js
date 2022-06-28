@@ -4,8 +4,6 @@ import connectDatabase from './config/MongoDb.js';
 import shoesRoute from './routes/Shoes.routes.js';
 import { errorHandler, notFound } from './Middleware/Error.js';
 
-//const cors = require("cors");
-//var mysql = require('mysql');
 dotenv.config();
 connectDatabase();
 const app = express();
