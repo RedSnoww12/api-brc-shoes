@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDatabase from './config/MongoDb.js';
 import shoesRoute from './routes/Shoes.routes.js';
 import { errorHandler, notFound } from './Middleware/Error.js';
+import userRoute from './routes/Users.routes.js';
 
 dotenv.config();
 connectDatabase();
@@ -14,7 +15,8 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/shoes", shoesRoute)
+app.use("/api/shoes", shoesRoute);
+app.use("/api/users", userRoute);
 
 // ERROR HANDLER
 app.use(notFound);
