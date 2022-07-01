@@ -50,6 +50,54 @@ userRoute.post("/login", asyncHandler(async(req,res) =>{
 
 }));
 
+// REGISTER
+userRoute.post("/register", asyncHandler(async(req,res) =>{
+    const { last_name, first_name, nickname, phone, adress, mail, password } = req.body;
+    const emailExist = await User.findOne({mail: mail});
+    const nicknameExist = await User.findOne({nickname: nickname});
+    
+    if (emailExist) {
+        res.status(400);
+        throw new Error("Email already exists !");
+    }
+    else if(nicknameExist){
+        res.status(400);
+        throw new Error("Nickname already exists !");
+    }else{
+        const user = await User.create({
+            last_name: last_name,
+            first_name: first_name,
+            nickname: nickname,
+            phone: phone,
+            adress: adress,
+            mail: mail,
+            password: password,
+        });
+
+        if(user){
+            res.status(201).json({
+                _id: user._id,
+                last_name: user.last_name,
+                first_name: user.first_name,
+                nickname: user.nickname,
+                phone: user.phone,
+                adress: user.adress,
+                mail: user.mail,
+                password: user.password,
+                token: generateToken(user.id),
+            })
+        }
+        else{
+            res.status(400)
+            throw new Error("Invalid Data")
+        }
+    }
+
+    
+
+
+}));
+
 // PROFILE 
 userRoute.get("/profile", protect, asyncHandler(async(req,res) =>{
     
