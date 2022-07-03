@@ -4,6 +4,8 @@ import connectDatabase from './config/MongoDb.js';
 import shoesRoute from './routes/Shoes.routes.js';
 import { errorHandler, notFound } from './Middleware/Error.js';
 import userRoute from './routes/Users.routes.js';
+import eventsRoute from './routes/Events.routes.js';
+
 
 dotenv.config();
 connectDatabase();
@@ -17,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/shoes", shoesRoute);
 app.use("/api/users", userRoute);
+app.use("/api/events", eventsRoute);
 
 // ERROR HANDLER
 app.use(notFound);
