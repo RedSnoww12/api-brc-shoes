@@ -17,7 +17,8 @@ const ShoesSchema = mongoose.Schema({
         type:Number,
         require:true,
         default: 0
-    }  
+    }
+    
 }, 
 {
     timestamps:true
