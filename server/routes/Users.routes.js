@@ -51,7 +51,7 @@ userRoute.post("/login", asyncHandler(async(req,res) =>{
 }));
 
 // REGISTER
-userRoute.post("/register", asyncHandler(async(req,res) =>{
+userRoute.post("/register", asyncHandler(async(req,res) => {
     const { last_name, first_name, nickname, phone, adress, mail, password } = req.body;
     const emailExist = await User.findOne({mail: mail});
     const nicknameExist = await User.findOne({nickname: nickname});

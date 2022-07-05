@@ -30,4 +30,33 @@ eventsRoute.get("/:id", asyncHandler(async(req, res) => {
     }
 }));
 
+// INSERT ONE EVENT
+eventsRoute.post("/", asyncHandler(async(req,res) =>{
+    const { shoes_id, ticket_price, nb_ticket, starting_date, drawing_date } = req.body;
+
+    const event = await Event.create({
+        shoes_id: shoes_id,
+        ticket_price: ticket_price,
+        nb_ticket: nb_ticket,
+        starting_date: starting_date,
+        drawing_date: drawing_date,
+    });
+
+    if(event){
+        res.status(201).json({
+            _id: event.id,
+            shoes_id: event.shoes_id,
+            ticket_price: event.ticket_price,
+            nb_ticket: event.nb_ticket,
+            starting_date: event.starting_date,
+            drawing_date: event.drawing_date,
+        })
+    }
+    else {
+        res.status(400);
+        throw new Error("Invalid Data");
+    }
+
+}));
+
 export default eventsRoute;
