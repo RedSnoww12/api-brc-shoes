@@ -20,7 +20,7 @@ eventsRoute.get("/",asyncHandler(async(req, res) => {
 
 // GET ONE EVENT
 eventsRoute.get("/:id", asyncHandler(async(req, res) => {
-    const event = await Event.find({_id: req.params.id});
+    const event = await Event.findOne({_id: req.params.id});
     if (event) {
         res.json(event);
     } else {
