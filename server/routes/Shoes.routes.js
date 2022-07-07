@@ -36,7 +36,7 @@ shoesRoute.post("/", asyncHandler(async(req,res) => {
     // });
 
     await Shoes.remove({});
-    const shoes = await Shoes.insertMany(shoess)
+    const shoes = await Shoes.insertMany(shoes)
 
     if(shoes){
         res.status(201).json({
